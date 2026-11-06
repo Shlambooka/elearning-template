@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 4: Feedback loops in everyday life — Feedback Loops</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <p class="module-meta">Module 4 of 4</p>
+    <h1>Feedback loops in everyday life</h1>
+  </header>
+
+  <main id="main">
+    <p>You've seen the theory and the classic examples. Now let's spot feedback loops in things you already do. Click each example to reveal what's going on.</p>
+
+    <div class="accordion">
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-ex-1">
+          Example 1: Your morning coffee
+        </button>
+        <div class="accordion-panel" id="panel-ex-1" hidden>
+          <p>You drink coffee → caffeine blocks sleepiness → you feel alert → you drink less coffee later in the day. The system pushes back against "too much caffeine" by making you *want* less. That's <strong>negative feedback</strong>.</p>
+          <p>But the morning habit itself can spiral: the more tired you are → the more coffee you need → the worse your sleep → the more tired you are. That's <strong>positive feedback</strong> on the *habit*.</p>
+          <p>Real systems often contain both, layered.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-ex-2">
+          Example 2: App reviews
+        </button>
+        <div class="accordion-panel" id="panel-ex-2" hidden>
+          <p>More 5-star reviews → the app appears higher in search → more people download it → more reviews. That's <strong>positive feedback</strong>: the output (reviews) feeds the input (visibility), which feeds the output.</p>
+          <p>If the app suddenly gets buggy, the reverse can also snowball: bad reviews → lower ranking → fewer users → the app gets *less* attention and may decline faster. Still positive feedback — just pushing in the other direction.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-ex-3">
+          Example 3: Your car's cruise control
+        </button>
+        <div class="accordion-panel" id="panel-ex-3" hidden>
+          <p>You set 100 km/h. The car goes up a hill → speed drops → the engine accelerates → speed returns to 100 km/h. Downhill → speed rises → the engine eases off → speed returns to 100 km/h.</p>
+          <p>The system constantly pushes *against* any change from the target. That's textbook <strong>negative feedback</strong> — the same mechanism as a thermostat, just with wheels.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h3>The pattern to remember</h3>
+      <p>When you spot a loop, ask one question: <strong>does the response push against the change, or push along with it?</strong> Push back → negative. Push along → positive. The label is about direction, not whether the outcome is good.</p>
+    </div>
+
+    <h2>One last check</h2>
+    <div class="quiz" data-answer="c">
+      <h3>Knowledge check</h3>
+      <p>Which of these is <strong>negative feedback</strong>?</p>
+      <label class="quiz-option">
+        <input type="radio" name="q1" value="a"> A bank run: worried depositors withdraw, which makes others worried and withdraw too
+      </label>
+      <label class="quiz-option">
+        <input type="radio" name="q1" value="b"> A fire spreading through dry grass
+      </label>
+      <label class="quiz-option">
+        <input type="radio" name="q1" value="c"> A person shivering when their body temperature drops
+      </label>
+      <button type="button" class="quiz-check">Check answer</button>
+      <p class="quiz-feedback" role="status" aria-live="polite" hidden></p>
+    </div>
+  </main>
+
+  <nav class="module-nav" aria-label="Module navigation">
+    <a href="03-positive.html">← Previous</a>
+    <a href="../index.html">Back to Home</a>
+  </nav>
+
+  <footer class="site-footer">
+    <p>Personal learning project</p>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

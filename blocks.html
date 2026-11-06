@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block Library — Feedback Loops</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <h1>Block Library</h1>
+    <p class="subtitle">Live demos + copy-paste markup for every interaction block. Numbers match <code>style.css</code>.</p>
+  </header>
+
+  <main id="main">
+
+    <!-- #region Table of contents -->
+    <nav aria-label="Block index" class="callout" style="border-left-color: var(--color-muted);">
+      <h2 style="margin-top: 0;">Jump to a block</h2>
+      <ol>
+        <li><a href="#block-4a">4a. Text + Media</a></li>
+        <li><a href="#block-4b">4b. Callout</a></li>
+        <li><a href="#block-4c">4c. Accordion</a></li>
+        <li><a href="#block-4d">4d. Tabs</a></li>
+        <li><a href="#block-4e">4e. Knowledge Check</a></li>
+        <li><a href="#block-4f">4f. Module Navigation</a></li>
+        <li><a href="#block-4g">4g. Flip Card</a></li>
+        <li><a href="#block-4h">4h. Image Hotspot</a></li>
+        <li><a href="#block-4i">4i. Reveal Button</a></li>
+        <li><a href="#block-4j">4j. Multi-Select Quiz</a></li>
+        <li><a href="#block-4k">4k. Sortable List</a></li>
+        <li><a href="#block-4l">4l. Timeline</a></li>
+        <li><a href="#block-4m">4m. Dialog</a></li>
+        <li><a href="#block-4n">4n. Branching Choice</a></li>
+        <li><a href="#block-skeleton">Module Page Skeleton</a></li>
+      </ol>
+    </nav>
+    <!-- #endregion -->
+
+    <!-- #region 4a. Text + Media -->
+    <section id="block-4a" aria-labelledby="block-4a-heading">
+      <h2 id="block-4a-heading">4a. Text + Media</h2>
+      <p>Plain paragraphs and images. The most common block — use freely.</p>
+
+      <div class="callout" style="border-left-color: var(--color-muted); background: var(--color-bg);">
+        <p>Any paragraph of explanatory text goes here. Keep it short — one idea per paragraph.</p>
+        <p>An image can follow. Always include an <code>alt</code> attribute (or <code>alt=""</code> if purely decorative).</p>
+      </div>
+
+      <pre><code>&lt;p&gt;Your first paragraph.&lt;/p&gt;
+&lt;p&gt;Your second paragraph.&lt;/p&gt;
+
+&lt;img src="../media/your-image.jpg" alt="Describe what the image shows"&gt;</code></pre>
+    </section>
+    <!-- #endregion -->
+
+    <!-- #region 4b. Callout -->
+    <section id="block-4b" aria-labelledby="block-4b-heading">
+      <h2 id="block-4b-heading">4b. Callout</h2>
+      <p>A highlighted box for tips, key ideas, or warnings. No JS needed.</p>
+
+      <div class="callout">
+        <h3>Key idea</h3>
+        <p>Use callouts to draw attention to the one thing you want the learner to remember from the section.</p>
+      </div>
+
+      <pre><code>&lt;div class="callout"&gt;
+  &lt;h3&gt;Key idea&lt;/h3&gt;
+  &lt;p&gt;The one thing to remember.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+    <!-- #endregion -->
+
+    <!-- #region 4c. Accordion -->
+    <section id="block-4c" aria-labelledby="block-4c-heading">
+      <h2 id="block-4c-heading">4c. Accordion</h2>
+      <p>Click-to-reveal panels. Good for letting learners peek at definitions without overwhelming the page.</p>
+
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" aria-controls="demo-panel-1">
+            First panel trigger
+          </button>
+          <div class="accordion-panel" id="demo-panel-1" hidden>
+            <p>Content revealed when the trigger is clicked.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" aria-controls="demo-panel-2">
+            Second panel trigger
+          </button>
+          <div class="accordion-panel" id="demo-panel-2" hidden>
+            <p>Each accordion item is independent.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p><strong>Important:</strong> the <code>id</code> on each panel must be <strong>unique on the page</strong>, and the trigger's <code>aria-controls</code> must match it. If you copy an accordion into a module that already has one, change the IDs (e.g., <code>panel-neg</code>, <code>panel-pos</code>).</p>
+      </div>
+
+      <pre><code>&lt;div class="accordion"&gt;
+  &lt;div class="accordion-item"&gt;
+    &lt;button class="accordion-trigger" aria-expanded="false" aria-controls="panel-unique-1"&gt;
+      Trigger text
+    &lt;/button&gt;
+    &lt;div class="accordion-panel" id="panel-unique-1" hidden&gt;
+      &lt;p&gt;Panel content.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="accordion-item"&gt;
+    &lt;button class="accordion-trigger" aria-expanded="false" aria-controls="panel-unique-2"&gt;
+      Another trigger
+    &lt;/button&gt;
+    &lt;div class="accordion-panel" id="panel-unique-2" hidden&gt;
+      &lt;p&gt;Another panel.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+    <!-- #endregion -->
+
+    <!-- #region 4d. Tabs -->
+    <section id="block-4d" aria-labelledby="block-4d-heading">
+      <h2 id="block-4d-heading">4d. Tabs</h2>
+      <p>Switch between related content views. Good for comparisons. Keyboard: <kbd>←</kbd>/<kbd>→</kbd> move between tabs, <kbd>Home</kbd>/<kbd>End</kbd> jump to first/last.</p>
+
+      <div class="tabs">
+        <div class="tab-list" role="tablist" aria-label="Demo tabs">
+          <button class="tab-button" role="tab"
+                  aria-selected="true" aria-controls="demo-tab-panel-1"
+                  id="demo-tab-1">First tab</button>
+          <button class="tab-button" role="tab"
+                  aria-selected="false" aria-controls="demo-tab-panel-2"
+                  id="demo-tab-2" tabindex="-1">Second tab</button>
+        </div>
+        <div class="tab-panel" role="tabpanel"
+             id="demo-tab-panel-1" aria-labelledby="demo-tab-1">
+          <p>Content shown when the first tab is selected.</p>
+        </div>
+        <div class="tab-panel" role="tabpanel"
+             id="demo-tab-panel-2" aria-labelledby="demo-tab-2" hidden>
+          <p>Content shown when the second tab is selected.</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p><strong>Important:</strong> every <code>id</code> on the buttons and panels must be <strong>unique on the page</strong>, and each pair must cross-reference correctly (<code>aria-controls</code> on the button → panel id; <code>aria-labelledby</code> on the panel → button id). If you copy tabs into a module that already has them, rename all four IDs.</p>
+      </div>
+
+      <pre><code>&lt;div class="tabs"&gt;
+  &lt;div class="tab-list" role="tablist" aria-label="Describe these tabs"&gt;
+    &lt;button class="tab-button" role="tab"
+            aria-selected="true" aria-controls="tab-panel-1"
+            id="tab-1"&gt;First tab&lt;/button&gt;
+    &lt;button class="tab-button" role="tab"
+            aria-selected="false" aria-controls="tab-panel-2"
+            id="tab-2" tabindex="-1"&gt;Second tab&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="tab-panel" role="tabpanel"
+       id="tab-panel-1" aria-labelledby="tab-1"&gt;
+    &lt;p&gt;First panel content.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="tab-panel" role="tabpanel"
+       id="tab-panel-2" aria-labelledby="tab-2" hidden&gt;
+    &lt;p&gt;Second panel content.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+    <!-- #endregion -->
+
+    <!-- #region 4e. Knowledge Check -->
+    <section id="block-4e" aria-labelledby="block-4e-heading">
+      <h2 id="block-4e-heading">4e. Knowledge Check</h2>
+      <p>Multiple-choice with instant feedback. <code>data-answer</code> holds the correct option's <code>value</code>.</p>
+
+      <div class="quiz" data-answer="b">
+        <h3>Demo question</h3>
+        <p>Which option is correct?</p>
+        <label class="quiz-option">
+          <input type="radio" name="demo-q" value="a"> A wrong option
+        </label>
+        <label class="quiz-option">
+          <input type="radio" name="demo-q" value="b"> The correct option
+        </label>
+        <label class="quiz-option">
+          <input type="radio" name="demo-q" value="c"> Another wrong option
+        </label>
+        <button type="button" class="quiz-check">Check answer</button>
+        <p class="quiz-feedback" role="status" aria-live="polite" hidden></p>
+      </div>
+
+      <div class="callout">
+        <p><strong>Important:</strong> the <code>name</code> on the radio inputs must be <strong>unique per quiz</strong> on the page. If two quizzes share the same <code>name</code>, selecting one deselects the other. Use <code>name="q1"</code>, <code>name="q2"</code>, etc.</p>
+      </div>
+
+      <pre><code>&lt;div class="quiz" data-answer="b"&gt;
+  &lt;h3&gt;Question text&lt;/h3&gt;
+  &lt;p&gt;Optional framing sentence.&lt;/p&gt;
+  &lt;label class="quiz-option"&gt;
+    &lt;input type="radio" name="unique-q-name" value="a"&gt; Wrong option
+  &lt;/label&gt;
+  &lt;label class="quiz-option"&gt;
+    &lt;input type="radio" name="unique-q-name" value="b"&gt; Correct option
+  &lt;/label&gt;
+  &lt;label class="quiz-option"&gt;
+    &lt;input type="radio" name="unique-q-name" value="c"&gt; Another wrong option
+  &lt;/label&gt;
+  &lt;button type="button" class="quiz-check"&gt;Check answer&lt;/button&gt;
+  &lt;p class="quiz-feedback" role="status" aria-live="polite" hidden&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+    <!-- #endregion -->
+
+    <!-- #region 4f. Module Navigation -->
+    <section id="block-4f" aria-labelledby="block-4f-heading">
+      <h2 id="block-4f-heading">4f. Module Navigation</h2>
+      <p>Back / Next buttons. Always the last thing before the footer. On the first module, "Back" points to <code>../index.html</code>; on the last, "Next" points to <code>../index.html</code> too.</p>
+
+      <div class="module-nav" style="margin-top: 0;">
+        <a href="#">← Previous</a>
+        <a href="#">Next →</a>
+      </div>
+
+      <pre><code>&lt;nav class="module-nav" aria-label="Module navigation"&gt;
+  &lt;a href="01-intro.html"&gt;← Previous&lt;/a&gt;
+  &lt;a href="03-next.html"&gt;Next →&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+    </section>
+    <!-- #endregion -->
+
+    <!-- #region 4g. Flip Card -->
+    <section id="block-4g" aria-labelledby="block-4g-heading">
+      <h2 id="block-4g-heading">4g. Flip Card</h2>
+      <p>Click-to-flip cards. Good for term/definition pairs, or any front/back reveal. Keyboard: <kbd>Tab</kbd> to focus, <kbd>Enter</kbd>/<kbd>Space</kbd> to flip.</p>
+
+      <div class="flip-cards">
+        <button class="flip-card" aria-pressed="false"
+                aria-label="Reveal definition of term one">
+          <div class="flip-card-inner">
+            <div class="flip-card-face flip-card-front">
+              <h3>Term one</h3>
+              <p class="flip-card-hint">Click to reveal</p>
+            </div>
+            <div class="flip-card-face flip-card-back">
+              <h3>Definition one</h3>
+              <p>The explanation appears on the back.</p>
+            </div>
+          </div>
+        </button>
+        <button class="flip-card" aria-pressed="false"
+                aria-label="Reveal definition of term two">
+          <div class="flip-card-inner">
+            <div class="flip-card-face flip-card-front">
+              <h3>Term two</h3>
+              <p class="flip-card-hint">Click to reveal</p>
+            </div>
+            <div class="flip-card-face flip-card-back">
+              <h3>Definition two</h3>
+              <p>Cards can be one, two, or many — the grid wraps automatically.</p>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <div class="callout">
+        <p><strong>Important:</strong> the <code>aria-label</code> on each card is what screen readers announce. It should describe what the card reveals — e.g., "Reveal definition of negative feedback". Don't leave it generic.</p>
+      </div>
+
+      <pre><code>&lt;div class="flip-cards"&gt;
+  &lt;button class="flip-card" aria-pressed="false"
+          aria-label="Reveal definition of ..."&gt;
+    &lt;div class="flip-card-inner"&gt;
+      &lt;div class="flip-card-face flip-card-front"&gt;
+        &lt;h3&gt;Front title&lt;/h3&gt;
+        &lt;p class="flip-card-hint"&gt;Click to reveal&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="flip-card-face flip-card-back"&gt;
+        &lt;h3&gt;Back title&lt;/h3&gt;
+        &lt;p&gt;Back content.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+    <!-- #endregion -->
+
+    <!-- #region 4h. Image Hotspot -->
+    <section id="block-4h" aria-labelledby="block-4h-heading">
+      <h2 id="block-4h-heading">4h. Image Hotspot</h2>
+      <p>Clickable numbered dots on an image that reveal explanations. Only one tooltip open at a time. Keyboard: <kbd>Tab</kbd> to each dot, <kbd>Enter</kbd>/<kbd>Space</kbd> to toggle.</p>
+
+      <figure class="hotspot-figure">
+        <div class="hotspot-image" style="display:flex; align-items:center; justify-content:center; color: var(--color-muted);">
+          <span>(Placeholder image area — replace with &lt;img&gt;)</span>
+        </div>
+        <button class="hotspot" aria-expanded="false"
+                aria-controls="demo-hotspot-tip-1"
+                style="top: 25%; left: 30%;">1</button>
+        <div class="hotspot-tooltip" id="demo-hotspot-tip-1" hidden
+             style="top: 40%; left: 30%;">
+          <p>First explanation. The tooltip appears near the dot.</p>
+        </div>
+        <button class="hotspot" aria-expanded="false"
+                aria-controls="demo-hotspot-tip-2"
+                style="top: 60%; left: 65%;">2</button>
+        <div class="hotspot-tooltip" id="demo-hotspot-tip-2" hidden
+             style="top: 75%; left: 55%;">
+          <p>Second explanation. Only one open at a time.</p>
+        </div>
+      </figure>
+
+      <div class="callout">
+        <p><strong>Important:</strong> each hotspot's <code>aria-controls</code> must match its tooltip's <code>id</code> (unique on the page). Position is set via inline <code>style="top: X%; left: Y%;"</code>.</p>
+      </div>
+
+      <pre><code>&lt;figure class="hotspot-figure"&gt;
+  &lt;img class="hotspot-image" src="../media/your-diagram.jpg"
+       alt="Describe the diagram"&gt;
+  &lt;button class="hotspot" aria-expanded="false"
+          aria-controls="tip-1"
+          style="top: 25%; left: 30%;"&gt;1&lt;/button&gt;
+  &lt;div class="hotspot-tooltip" id="tip-1" hidden
+       style="top: 40%; left: 30%;"&gt;
+    &lt;p&gt;Explanation.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/figure&gt;</code></pre>
+    </section>
+    <!-- #endregion -->
+
+    <!-- #region 4i. Reveal Button -->
+    <section id="block-4i" aria-labelledby="block-4i-heading">
+      <h2 id="block-4i-heading">4i. Reveal Button</h2>
+      <p>The simplest reveal: click a button, a box appears below. Good for "show the answer" or "reveal an example."</p>
+
+      <div class="reveal">
+        <button class="reveal-button" aria-expanded="false"
+                aria-controls="demo-reveal-1">Show the answer</button>
+        <div class="reveal-content" id="demo-reveal-1" hidden>
+          <p>This text was hidden until you clicked the button.</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p><strong>Important:</strong> the button's <code>aria-controls</code> must match the content's <code>id</code>. Unique on the page.</p>
+      </div>
+
+      <pre><code>&lt;div class="reveal"&gt;
+  &lt;button class="reveal-button" aria-expanded="false"
+          aria-controls="reveal-1"&gt;Show the answer&lt;/button&gt;
+  &lt;div class="reveal-content" id="reveal-1" hidden&gt;
+    &lt;p&gt;Hidden content.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+    <!-- #endregion -->
+
+    <!-- #region 4j. Multi-Select Quiz -->
+    <section id="block-4j" aria-labelledby="block-4j-heading">
+      <h2 id="block-4j-heading">4j. Multi-Select Quiz</h2>
+      <p>"Choose all that apply." <code>data-correct</code> is a comma-separated list of every correct option's value. Gives partial-credit feedback.</p>
+
+      <div class="multiquiz" data-correct="a,c">
+        <h3>Demo: select all correct options</h3>
+        <label class="multiquiz-option">
+          <input type="checkbox" name="demo-mq" value="a"> Correct option A
+        </label>
+        <label class="multiquiz-option">
+          <input type="checkbox" name="demo-mq" value="b"> Wrong option B
+        </label>
+        <label class="multiquiz-option">
+          <input type="checkbox" name="demo-mq" value="c"> Correct option C
+        </label>
+        <label class="multiquiz-option">
+          <input type="checkbox" name="demo-mq" value="d"> Wrong option D
+        </label>
+        <button type="button" class="multiquiz-check">Check</button>
+        <p class="multiquiz-feedback" role="status" aria-live="polite" hidden></p>
+      </div>
+
+      <div class="callout">
+        <p><strong>Important:</strong> every correct value must appear in <code>data-correct</code> exactly once, comma-separated, no spaces needed (but tolerated). Wrong options are any values not listed.</p>
+      </div>
+
+      <pre><code>&lt;div class="multiquiz" data-correct="a,c"&gt;
+  &lt;h3&gt;Question text&lt;/h3&gt;
+  &lt;label class="multiquiz-option"&gt;
+    &lt;input type="checkbox" name="mq1" value="a"&gt; Option A
+  &lt;/label&gt;
+  &lt;label class="multiquiz-option"&gt;
+    &lt;input type="checkbox" name="mq1" value="b"&gt; Option B
+  &lt;/label&gt;
+  &lt;button type="button" class="multiquiz-check"&gt;Check&lt;/button&gt;
+  &lt;p class="multiquiz-feedback" role="status" aria-live="polite" hidden&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+    <!-- #endregion -->
+
+    <!-- #region 4k. Sortable List -->
+    <section id="block-4k" aria-labelledby="block-4k-heading">
+      <h2 id="block-4k-heading">4k. Sortable List</h2>
+      <p>Drag items to reorder, or focus an item and press <kbd>Alt</kbd>+<kbd>↑</kbd>/<kbd>↓</kbd>. <code>data-answer</code> on the list is the correct order (comma-separated data-ids). The check/reset buttons and feedback must have IDs matching the list's <code>id</code> + <code>-check</code>, <code>-reset</code>, <code>-feedback</code>.</p>
+
+      <ol class="sortable" id="demo-sort" data-answer="a,b,c">
+        <li class="sortable-item" data-id="a">
+          <span class="sortable-handle" aria-hidden="true">⋮⋮</span>
+          Step A (should be first)
+        </li>
+        <li class="sortable-item" data-id="b">
+          <span class="sortable-handle" aria-hidden="true">⋮⋮</span>
+          Step B (should be second)
+        </li>
+        <li class="sortable-item" data-id="c">
+          <span class="sortable-handle" aria-hidden="true">⋮⋮</span>
+          Step C (should be third)
+        </li>
+      </ol>
+      <div class="sortable-actions">
+        <button class="sortable-check" id="demo-sort-check">Check order</button>
+        <button class="sortable-reset is-secondary" id="demo-sort-reset">Reset</button>
+      </div>
+      <p class="sortable-feedback" id="demo-sort-feedback" role="status" aria-live="polite" hidden></p>
+
+      <div class="callout">
+        <p><strong>Important:</strong> the list needs an <code>id</code>, and the check button, reset button, and feedback element must each use that id + a suffix: <code>id="mylist-check"</code>, <code>id="mylist-reset"</code>, <code>id="mylist-feedback"</code>. Each item needs a unique <code>data-id</code> matching its position in <code>data-answer</code>.</p>
+      </div>
+
+      <pre><code>&lt;ol class="sortable" id="my-list" data-answer="a,b,c"&gt;
+  &lt;li class="sortable-item" data-id="a"&gt;
+    &lt;span class="sortable-handle" aria-hidden="true"&gt;⋮⋮&lt;/span&gt;
+    Item A
+  &lt;/li&gt;
+  &lt;li class="sortable-item" data-id="b"&gt;
+    &lt;span class="sortable-handle" aria-hidden="true"&gt;⋮⋮&lt;/span&gt;
+    Item B
+  &lt;/li&gt;
+  &lt;li class="sortable-item" data-id="c"&gt;
+    &lt;span class="sortable-handle" aria-hidden="true"&gt;⋮⋮&lt;/span&gt;
+    Item C
+  &lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="sortable-actions"&gt;
+  &lt;button class="sortable-check" id="my-list-check"&gt;Check order&lt;/button&gt;
+  &lt;button class="sortable-reset is-secondary" id="my-list-reset"&gt;Reset&lt;/button&gt;
+&lt;/div&gt;
+&lt;p class="sortable-feedback" id="my-list-feedback"
+   role="status" aria-live="polite" hidden&gt;&lt;/p&gt;</code></pre>
+    </section>
+    <!-- #endregion -->
+
+    <!-- #region 4l. Timeline -->
+    <section id="block-4l" aria-labelledby="block-4l-heading">
+      <h2 id="block-4l-heading">4l. Timeline</h2>
+      <p>Vertical timeline of steps or events. Pure layout — no JS. Add or remove <code>.timeline-item</code> elements as needed.</p>
+
+      <ol class="timeline">
+        <li class="timeline-item">
+          <span class="timeline-marker" aria-hidden="true"></span>
+          <h3>Step 1</h3>
+          <p>What happens first.</p>
+        </li>
+        <li class="timeline-item">
+          <span class="timeline-marker" aria-hidden="true"></span>
+          <h3>Step 2</h3>
+          <p>What happens next.</p>
+        </li>
+        <li class="timeline-item">
+          <span class="timeline-marker" aria-hidden="true"></span>
+          <h3>Step 3</h3>
+          <p>And finally this.</p>
+        </li>
+      </ol>
+
+      <pre><code>&lt;ol class="timeline"&gt;
+  &lt;li class="timeline-item"&gt;
+    &lt;span class="timeline-marker" aria-hidden="true"&gt;&lt;/span&gt;
+    &lt;h3&gt;Step 1&lt;/h3&gt;
+    &lt;p&gt;Description.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li class="timeline-item"&gt;
+    &lt;span class="timeline-marker" aria-hidden="true"&gt;&lt;/span&gt;
+    &lt;h3&gt;Step 2&lt;/h3&gt;
+    &lt;p&gt;Description.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+    </section>
+    <!-- #endregion -->
+
+    <!-- #region 4m. Dialog -->
+    <section id="block-4m" aria-labelledby="block-4m-heading">
+      <h2 id="block-4m-heading">4m. Dialog</h2>
+      <p>Two-speaker conversation with alternating bubbles. Pure layout — no JS, no interaction. Left = one speaker, right = the other.</p>
+
+      <div class="dialog">
+        <div class="dialog-turn is-left">
+          <span class="dialog-speaker">Manager</span>
+          <div class="dialog-bubble">
+            <p>Can we talk about the deadline? I'm worried we're behind.</p>
+          </div>
+        </div>
+        <div class="dialog-turn is-right">
+          <span class="dialog-speaker">You</span>
+          <div class="dialog-bubble">
+            <p>Sure. We lost two days to the review, but we're back on track now.</p>
+          </div>
+        </div>
+        <div class="dialog-turn is-left">
+          <span class="dialog-speaker">Manager</span>
+          <div class="dialog-bubble">
+            <p>Good. Let me know if you need anything to hold the line.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p><strong>Important:</strong> each turn is one <code>.dialog-turn</code> with <code>.is-left</code> or <code>.is-right</code>. Alternate them to show speaker changes. Add as many turns as the conversation needs.</p>
+      </div>
+
+      <pre><code>&lt;div class="dialog"&gt;
+  &lt;div class="dialog-turn is-left"&gt;
+    &lt;span class="dialog-speaker"&gt;Speaker A&lt;/span&gt;
+    &lt;div class="dialog-bubble"&gt;
+      &lt;p&gt;What they say.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="dialog-turn is-right"&gt;
+    &lt;span class="dialog-speaker"&gt;Speaker B&lt;/span&gt;
+    &lt;div class="dialog-bubble"&gt;
+      &lt;p&gt;What they say back.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+    <!-- #endregion -->
+
+    <!-- #region 4n. Branching Choice -->
+    <section id="block-4n" aria-labelledby="block-4n-heading">
+      <h2 id="block-4n-heading">4n. Branching Choice</h2>
+      <p>A prompt and a set of link-options that lead to different outcome pages. Clicking an option stores the choice so it can be marked as "chosen" on the outcome page. The branching itself is in the <em>page structure</em> — each option's <code>href</code> points to a different outcome page.</p>
+
+      <div class="branch" data-scenario-id="demo-scenario">
+        <p class="branch-prompt">Demo prompt: what do you do?</p>
+        <div class="branch-options">
+          <a class="branch-option" data-choice="a" href="#">Option A (click to mark)</a>
+          <a class="branch-option" data-choice="b" href="#">Option B</a>
+          <a class="branch-option" data-choice="c" href="#">Option C</a>
+        </div>
+      </div>
+      <p style="font-size: var(--font-size-small); color: var(--color-muted);">(The links above have <code>href="#"</code> so the demo doesn't navigate. Once you click, the choice is stored — reload the page to see it marked. In a real scenario, each <code>href</code> points to an outcome page.)</p>
+
+      <div class="callout">
+        <p><strong>Important:</strong> every page in a scenario — the scenario page and all its outcome pages — must use the <strong>same</strong> <code>data-scenario-id</code>, and the same <code>data-choice</code> values, so the "chosen" marker appears consistently. Use a different <code>data-scenario-id</code> for each separate scenario in the course.</p>
+      </div>
+
+      <h3>Outcome page structure</h3>
+      <p>Outcome pages reuse the standard module skeleton and add one of these:</p>
+      <pre><code>&lt;div class="branch-outcome is-good"&gt;
+  &lt;h2&gt;Nice call.&lt;/h2&gt;
+  &lt;p&gt;This is what happened because of your choice...&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a href="scenario.html"&gt;Try again&lt;/a&gt; ·
+   &lt;a href="next-scenario.html"&gt;Next scenario →&lt;/a&gt;&lt;/p&gt;</code></pre>
+
+      <pre><code>&lt;!-- On the scenario page: --&gt;
+&lt;div class="branch" data-scenario-id="deadline"&gt;
+  &lt;p class="branch-prompt"&gt;Your manager asks about the deadline. What do you do?&lt;/p&gt;
+  &lt;div class="branch-options"&gt;
+    &lt;a class="branch-option" data-choice="a"
+       href="outcome-a.html"&gt;Tell them the truth about the delay&lt;/a&gt;
+    &lt;a class="branch-option" data-choice="b"
+       href="outcome-b.html"&gt;Promise to make up the time&lt;/a&gt;
+    &lt;a class="branch-option" data-choice="c"
+       href="outcome-c.html"&gt;Ask for more information&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+    <!-- #endregion -->
+
+    <!-- #region Module Page Skeleton -->
+    <section id="block-skeleton" aria-labelledby="block-skeleton-heading">
+      <h2 id="block-skeleton-heading">Module Page Skeleton</h2>
+      <p>Every module page follows this exact shape. Start a new module by copying an existing one — you don't need to retype this.</p>
+
+      <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Module X: Title — Feedback Loops&lt;/title&gt;
+  &lt;link rel="stylesheet" href="../css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;a class="skip-link" href="#main"&gt;Skip to content&lt;/a&gt;
+
+  &lt;header class="site-header"&gt;
+    &lt;p class="module-meta"&gt;Module X of Y&lt;/p&gt;
+    &lt;h1&gt;Module title&lt;/h1&gt;
+  &lt;/header&gt;
+
+  &lt;main id="main"&gt;
+    &lt;!-- stack blocks here --&gt;
+  &lt;/main&gt;
+
+  &lt;nav class="module-nav" aria-label="Module navigation"&gt;
+    &lt;a href="previous.html"&gt;← Previous&lt;/a&gt;
+    &lt;a href="next.html"&gt;Next →&lt;/a&gt;
+  &lt;/nav&gt;
+
+  &lt;footer class="site-footer"&gt;
+    &lt;p&gt;Personal learning project&lt;/p&gt;
+  &lt;/footer&gt;
+
+  &lt;script src="../js/main.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </section>
+    <!-- #endregion -->
+
+    <p style="margin-top: var(--space-lg);"><a href="index.html">← Back to course home</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <p>Personal learning project</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
