@@ -704,6 +704,31 @@ pre code {
 .branch-outcome h2 { margin-top: 0; }
 
 
+/* ---- 4o. Progress Bar ---- */
+.progress {
+  margin: var(--space-md) 0;
+}
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-small);
+  color: var(--color-muted);
+  margin-bottom: var(--space-sm);
+}
+.progress-track {
+  height: 0.75rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: var(--radius-md);
+  transition: width 0.3s ease;
+}
+
 /* ---- 4f. Block Library page (blocks.html) ---- */
 main > section {
   margin-bottom: var(--space-lg);

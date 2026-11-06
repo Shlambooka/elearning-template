@@ -34,6 +34,7 @@
         <li><a href="#block-4l">4l. Timeline</a></li>
         <li><a href="#block-4m">4m. Dialog</a></li>
         <li><a href="#block-4n">4n. Branching Choice</a></li>
+        <li><a href="#block-4o">4o. Progress Bar</a></li>
         <li><a href="#block-skeleton">Module Page Skeleton</a></li>
       </ol>
     </nav>
@@ -574,6 +575,39 @@
        href="outcome-b.html"&gt;Promise to make up the time&lt;/a&gt;
     &lt;a class="branch-option" data-choice="c"
        href="outcome-c.html"&gt;Ask for more information&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+    <!-- #endregion -->
+
+    <!-- #region 4o. Progress Bar -->
+    <section id="block-4o" aria-labelledby="block-4o-heading">
+      <h2 id="block-4o-heading">4o. Progress Bar</h2>
+      <p>A bar showing "module X of Y." Reads <code>data-current</code> and <code>data-total</code> from the outer div. Also marks the current page as visited in <code>localStorage</code>.</p>
+
+      <div class="progress" data-current="3" data-total="12">
+        <div class="progress-label">
+          <span>Module 3 of 12</span>
+          <span>25%</span>
+        </div>
+        <div class="progress-track" role="progressbar"
+             aria-valuemin="0" aria-valuemax="12" aria-valuenow="3">
+          <div class="progress-fill" style="width: 25%;"></div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p><strong>Important:</strong> update <code>data-current</code> and <code>data-total</code> on each module's progress block when you add or remove modules. Everything else (bar width, percent label, accessible values) updates automatically. The block also stores a "visited" flag per page, so a home-page summary can be added later without changing the bar.</p>
+      </div>
+
+      <pre><code>&lt;div class="progress" data-current="3" data-total="12"&gt;
+  &lt;div class="progress-label"&gt;
+    &lt;span&gt;Module 3 of 12&lt;/span&gt;
+    &lt;span&gt;25%&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="progress-track" role="progressbar"
+       aria-valuemin="0" aria-valuemax="12" aria-valuenow="3"&gt;
+    &lt;div class="progress-fill" style="width: 25%;"&gt;&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
     </section>

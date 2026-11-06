@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initReveals();
   initMultiQuizzes();
   initSortables();
-  initBranching();   // ← new
+  initBranching();
+  initProgress();     // ← new
   initQuizzes();
 });
 // #endregion
@@ -521,5 +522,79 @@ function initBranching() {
       });
     });
   });
+}
+// #endregion
+
+// #region Progress Bar
+//
+// HTML contract:
+//   <div class="progress" data-current="3" data-total="12">
+//     <div class="progress-label">
+//       <span>Module 3 of 12</span>
+//       <span>25%</span>
+//     </div>
+//     <div class="progress-track" role="progressbar"
+//          aria-valuemin="0" aria-valuemax="12" aria-valuenow="3">
+//       <div class="progress-fill" style="width: 25%;"></div>
+//     </div>
+//   </div>
+//
+// What it does:
+//   1. Reads data-current / data-total.
+//   2. Writes the width % to the .progress-fill element.
+//   3. Updates aria-valuenow and the label text.
+//   4. Marks the current page as "visited" in localStorage
+//      so a home-page summary can aggregate progress.
+//
+// Why manual current/total: it keeps the source of truth in
+// the page itself. When you add a module, you update its
+// data-current and data-total — nothing else. No separate
+// manifest of pages to keep in sync.
+function initProgress() {
+  const bars = document.querySelectorAll('.progress');
+  if (!bars.length) return;
+
+  // Mark this page as visited (used by home page summary)
+  const pageKey = 'progress:' + window.location.pathname;
+  localStorage.setItem(pageKey, '1');
+
+  bars.forEach(bar => {
+    const current = parseInt(bar.dataset.current, 10);
+    const total   = parseInt(bar.dataset.total, 10);
+    if (!Number.isFinite(current) || !Number.isFinite(total) || total <= 0) return;
+
+    const pct = Math.min(100, Math.max(0, Math.round((current / total) * 100)));
+
+    const fill   = bar.querySelector('.progress-fill');
+    const track  = bar.querySelector('.progress-track');
+    const labels = bar.querySelectorAll('.progress-label span');
+
+    if (fill)  fill.style.width = pct + '%';
+    if (track) {
+      track.setAttribute('aria-valuenow', String(current));
+      track.setAttribute('aria-valuemax', String(total));
+    }
+    if (labels.length === 2) {
+      labels[0].textContent = `Module ${current} of ${total}`;
+      labels[1].textContent = pct + '%';
+    }
+  });
+}
+
+// Helper for the home page: returns { visited, total } where
+// total is the number of progress pages *counted* in
+// localStorage. Call it like:
+//   const stats = getVisitedCount();  // { visited: 7 }
+// Note: this can only count pages the learner has actually
+// visited — it cannot know the course total. That's why
+// data-total lives in each module: it's the authoritative
+// number.
+function getVisitedCount() {
+  let visited = 0;
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith('progress:')) visited++;
+  }
+  return { visited };
 }
 // #endregion
